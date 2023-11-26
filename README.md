@@ -65,3 +65,4 @@ Map<String, Map<String, Double>> res3 = restClientDeclarativeInterface.getRate()
 double rate3 = 1 / res2.get("rates").get(currencyCode.name());
 log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate3));
 ```
+
