@@ -1,2 +1,5 @@
 
 api.exchangeRate.url: "https://open.er-api.com"
+
+spring.main.web-application-type: NONE
+
