@@ -1,25 +1,21 @@
 package com.example.declarativehttpinterface.demo.model;
 
-import java.math.BigDecimal;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import java.math.BigDecimal;
 import java.util.Map;
+import lombok.Data;
 
 @Data
 public class ExchangeRateApiResponse implements CurrencyApiResponse {
 
 	private String date;
 	private Long time_last_updated;
-	private Map<String, BigDecimal> rates;
+	private Map<String, Double> rates;
 	@JsonProperty("error-type")
 	private String error;
 	private String result;
 
 	@Override
-	public Map<String, BigDecimal> getRates() {
+	public Map<String, Double> getRates() {
 		return this.rates;
 	}
 
