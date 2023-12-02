@@ -23,7 +23,7 @@ public class MyHttpClient {
     Map<String, Map<String, Double>> res = rt.getForObject(this.exchangeRateApiUrl + "/v6/latest/KRW", Map.class);
 
     double rate = 1 / res.get("rates").get(currency.name());
-    log.info(String.format("## %s exchanges rate: %.2f", currency.name(), rate));
+    log.info(String.format("[RestClient] %s exchanges rate: %.2f", currency.name(), rate));
     return rate;
   }
 
@@ -36,7 +36,7 @@ public class MyHttpClient {
         .block();
 
     double rate = 1 / res.get("rates").get(currency.name());
-    log.info(String.format("## %s exchanges rate: %.2f", currency.name(), rate));
+    log.info(String.format("[WebClient] %s exchanges rate: %.2f", currency.name(), rate));
     return rate;
   }
 
@@ -49,7 +49,7 @@ public class MyHttpClient {
         .body(Map.class);
 
     double rate = 1 / res.get("rates").get(currency.name());
-    log.info(String.format("## %s exchanges rate: %.2f", currency.name(), rate));
+    log.info(String.format("[RestClient] %s exchanges rate: %.2f", currency.name(), rate));
     return rate;
   }
 }

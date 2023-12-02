@@ -4,15 +4,15 @@
 ## 설명
 https://docs.spring.io/spring-framework/reference/integration/rest-clients.html 를 참고하여, 
 
-총 6개의 http client 사용 demo 로 구성 되어 있습니다.
+총 7개의 http client 사용 demo 로 구성 되어 있습니다.
 
 첫 3개는 Rest Template, WebClient, RestClient 를 사용한 demo 를 구현하였습니다.
 
-나머지 3개는 declarative http interface 사용하여 구현하였습니다.
+나머지 4개는 declarative http interface 사용하여 구현하였습니다.
 * RestTemplate + declarative http interface
 * WebClient + declarative http interface
 * RestClient + declarative http interface
-* OpenFeignClient ( spring cloud 의 spring boot 3.2 지원 나오면 추가 예정 ) 
+* OpenFeignClient + declarative http interface  
 
 
 ## 최소 version
@@ -64,5 +64,13 @@ currencyCode = CurrencyCode.JPY;
 Map<String, Map<String, Double>> res3 = restClientDeclarativeInterface.getRate();
 double rate3 = 1 / res2.get("rates").get(currencyCode.name());
 log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate3));
+
+// 14. openFeign
+currencyCode = CurrencyCode.CNY;
+Map<String, Map<String, Double>> res4 = openFeignClientInterface.getRate();
+double rate4 = 1 / res2.get("rates").get(currencyCode.name());
+log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
 ```
 
+Result
+https://github.com/gwagdalf/declarative-http-interface-demo/assets/34761230/b30194df-a6a9-429b-b139-178ff318efaf

@@ -1,20 +1,22 @@
 package com.example.declarativehttpinterface.demo;
 
+import com.example.declarativehttpinterface.demo.client.MyHttpClient;
+import com.example.declarativehttpinterface.demo.client.OpenFeignClientInterface;
 import com.example.declarativehttpinterface.demo.client.RestClientDeclarativeInterface;
 import com.example.declarativehttpinterface.demo.client.RestTemplateDeclarativeInterface;
 import com.example.declarativehttpinterface.demo.client.WebClientDeclarativeInterface;
-import com.example.declarativehttpinterface.demo.client.MyHttpClient;
 import com.example.declarativehttpinterface.demo.model.CurrencyCode;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @Slf4j
 @SpringBootApplication
-//@EnableFeignClients
+@EnableFeignClients
 public class DemoApplication {
 
   public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class DemoApplication {
       , WebClientDeclarativeInterface webClientDeclarativeInterface
       , RestClientDeclarativeInterface restClientDeclarativeInterface
       , RestTemplateDeclarativeInterface restTemplateDeclarativeInterface
-//			, @Autowired OpenFeignClientInterface openFeignClientInterface
+			, OpenFeignClientInterface openFeignClientInterface
   ) {
     return args -> {
 
@@ -46,25 +48,25 @@ public class DemoApplication {
       Map<String, Map<String, Double>> res1 = restTemplateDeclarativeInterface.getRate();
       CurrencyCode currencyCode = CurrencyCode.USD;
       double rate1 = 1 / res1.get("rates").get(currencyCode.name());
-      log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate1));
+      log.info(String.format("[RestTemplate+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate1));
 
       // 12. webClient
       currencyCode = CurrencyCode.EUR;
       Map<String, Map<String, Double>> res2 = webClientDeclarativeInterface.getRate();
       double rate2 = 1 / res2.get("rates").get(currencyCode.name());
-      log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate2));
+      log.info(String.format("[WebClient+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate2));
 
       // 13. restClient
       currencyCode = CurrencyCode.JPY;
       Map<String, Map<String, Double>> res3 = restClientDeclarativeInterface.getRate();
       double rate3 = 1 / res2.get("rates").get(currencyCode.name());
-      log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate3));
+      log.info(String.format("[RestClient+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
 
-//			// 14. openFeign
-//			currencyCode = CurrencyCode.CNY;
-//			Map<String, Map<String, Double>> res4 = openFeignClientInterface.getRate();
-//			double rate4 = 1 / res2.get("rates").get(currencyCode.name());
-//			log.info(String.format("## %s exchanges rate: %.2f", currencyCode.name(), rate3));
+			// 14. openFeign
+			currencyCode = CurrencyCode.CNY;
+			Map<String, Map<String, Double>> res4 = openFeignClientInterface.getRate();
+			double rate4 = 1 / res2.get("rates").get(currencyCode.name());
+			log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
 
     };
   }
