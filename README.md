@@ -75,7 +75,4 @@ log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", curren
 ### Result
 ![image](https://github.com/gwagdalf/declarative-http-interface-demo/assets/34761230/b30194df-a6a9-429b-b139-178ff318efaf)
 
-<div>
-<img src="[http://github.ebaykorea.com/storage/user/119/files/108c8800-2424-11eb-8dc5-fda72816dc74](https://github.com/gwagdalf/declarative-http-interface-demo/assets/34761230/b30194df-a6a9-429b-b139-178ff318efaf)" width="100%"></img>
-</div>
 
