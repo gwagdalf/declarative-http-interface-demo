@@ -72,5 +72,7 @@ double rate4 = 1 / res2.get("rates").get(currencyCode.name());
 log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
 ```
 
-Result
-https://github.com/gwagdalf/declarative-http-interface-demo/assets/34761230/b30194df-a6a9-429b-b139-178ff318efaf
+### Result
+![image](https://github.com/gwagdalf/declarative-http-interface-demo/assets/34761230/b30194df-a6a9-429b-b139-178ff318efaf)
+
+
