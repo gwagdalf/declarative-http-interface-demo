@@ -66,7 +66,7 @@ public class DemoApplication {
 			currencyCode = CurrencyCode.CNY;
 			Map<String, Map<String, Double>> res4 = openFeignClientInterface.getRate();
 			double rate4 = 1 / res2.get("rates").get(currencyCode.name());
-			log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
+			log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate4));
 
     };
   }
