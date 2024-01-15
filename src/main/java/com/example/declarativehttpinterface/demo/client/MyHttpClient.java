@@ -29,11 +29,12 @@ public class MyHttpClient {
 
   public double getRateWithWebclient(CurrencyCode currency) {
     WebClient client = WebClient.create(exchangeRateApiUrl);
-    Map<String, Map<String, Double>> res = client.get()
+    Map<String, Map<String, Double>> res = client
+        .get()
         .uri("/v6/latest/KRW")
         .retrieve()
         .bodyToMono(Map.class)
-        .block();
+        .block(); // 동기방식이기에 block(), 비동기라면 toStream()
 
     double rate = 1 / res.get("rates").get(currency.name());
     log.info(String.format("[WebClient] %s exchanges rate: %.2f", currency.name(), rate));
