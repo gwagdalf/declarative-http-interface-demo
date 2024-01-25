@@ -38,6 +38,7 @@ public class MyHttpClient {
 
     double rate = 1 / res.get("rates").get(currency.name());
     log.info(String.format("[WebClient] %s exchanges rate: %.2f", currency.name(), rate));
+
     return rate;
   }
 

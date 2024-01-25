@@ -45,8 +45,8 @@ public class DemoApplication {
       log.info("=== declarative http interface ===");
 
       // 11. restTemplate
-      Map<String, Map<String, Double>> res1 = restTemplateDeclarativeInterface.getRate();
       CurrencyCode currencyCode = CurrencyCode.USD;
+      Map<String, Map<String, Double>> res1 = restTemplateDeclarativeInterface.getRate();
       double rate1 = 1 / res1.get("rates").get(currencyCode.name());
       log.info(String.format("[RestTemplate+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate1));
 
@@ -59,13 +59,13 @@ public class DemoApplication {
       // 13. restClient
       currencyCode = CurrencyCode.JPY;
       Map<String, Map<String, Double>> res3 = restClientDeclarativeInterface.getRate();
-      double rate3 = 1 / res2.get("rates").get(currencyCode.name());
+      double rate3 = 1 / res3.get("rates").get(currencyCode.name());
       log.info(String.format("[RestClient+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate3));
 
 			// 14. openFeign
 			currencyCode = CurrencyCode.CNY;
 			Map<String, Map<String, Double>> res4 = openFeignClientInterface.getRate();
-			double rate4 = 1 / res2.get("rates").get(currencyCode.name());
+			double rate4 = 1 / res4.get("rates").get(currencyCode.name());
 			log.info(String.format("[OpenFeign+declarative] %s exchanges rate: %.2f", currencyCode.name(), rate4));
 
     };

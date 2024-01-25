@@ -23,6 +23,15 @@ public class DeclarativeHttpInterfaceClientConfig {
 	private String exchangeRateApiUrl;
 
 	@Bean
+	public RestTemplateDeclarativeInterface restTemplateDeclarativeInterface() {
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(this.exchangeRateApiUrl));
+		RestTemplateAdapter adapter = RestTemplateAdapter.create(restTemplate);
+		HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
+
+		return factory.createClient(RestTemplateDeclarativeInterface.class);
+	}
+	@Bean
 	public WebClientDeclarativeInterface webClientDeclarativeInterface() {
 		WebClient webClient = WebClient.builder().baseUrl(this.exchangeRateApiUrl).build();
 		WebClientAdapter adapter = WebClientAdapter.create(webClient);
@@ -40,13 +49,5 @@ public class DeclarativeHttpInterfaceClientConfig {
 		return factory.createClient(RestClientDeclarativeInterface.class);
 	}
 
-	@Bean
-	public RestTemplateDeclarativeInterface restTemplateDeclarativeInterface() {
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(this.exchangeRateApiUrl));
-		RestTemplateAdapter adapter = RestTemplateAdapter.create(restTemplate);
-		HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
 
-		return factory.createClient(RestTemplateDeclarativeInterface.class);
-	}
 }
